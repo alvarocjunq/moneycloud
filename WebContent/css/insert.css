@@ -1,0 +1,126 @@
+#modal {
+    opacity: 1;
+    position: absolute;
+    top: 12.5%;
+    width: 75%;
+    height: 25%;
+    left: 12.5%;
+    background: white;
+    display: block;
+}
+#modal input{
+    border: none;
+    text-align: center;
+    width: 100%;
+}
+
+body{
+  position: absolute;
+  float: left;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  padding: 0px;
+  margin: 0px;
+  background: red;
+  font-family:calibri;
+}
+
+.logo {
+    background: transparent;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: 45%;
+    margin-left: -120px;
+    top: 70px;
+    border-radius: 75px;
+}
+.logo img{
+    position: relative;
+    top: 35%;
+    left: 12%;
+}
+.container p {
+    color: #fff;
+    position: absolute;
+	text-align: center;
+	top: 40px;
+	left: 20%;
+    font-size: 16pt;
+    font-family: calibri;
+}
+.container span{
+    top: 300px;
+    color: #ccc;
+    font-family: calibri;
+}
+.container {
+  background: #2f9b95;
+  display: table;
+  width:100%;
+  height:100%;
+}
+
+.container .btns{
+  display: table-cell;
+  padding: 20px;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
+.container .btns button{ 
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border:none;
+  border-radius: 3px;
+  background: #275d5a;
+  color: #fff;
+}
+
+.container .btns input{ 
+  width: 95%;
+  padding: 10px;
+  margin-top: 10px;
+  border:none;
+  border-radius: 3px;
+  background: #275d5a;
+  color: #fff;
+}
+
+#adicionar{
+	cursor: pointer;
+}
+
+.line-transaction{
+	height: 5%;
+    background-color: #3FAFA9;
+    font-size: 120%;
+    vertical-align: middle;
+    padding-top: 8px;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 28px;
+	margin-bottom: 10px;
+}
+
+.box-transaction{
+	background-color: #fff;
+    color: #7e277f;
+    padding: 12px;
+    border-radius: 2px;
+}
+
+.date-transaction{
+	color: #fff;
+	text-align: left;
+	margin-bottom: 5px;
+}
+
+.date-transaction span{
+	color: #c1afaf;
+}
+
+#clique{position: relative;    text-align: initial;}

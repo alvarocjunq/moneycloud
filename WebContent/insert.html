@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Pocket Money</title>
+  
+  <link rel="stylesheet" type="text/css" href="css/insert.css"/>
+  <link rel="stylesheet" type="text/css" href="font-awesome.min.css"/>
+  <script src="script/jquery.min.js"></script>
+  <script src="script/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
+  
+<script>
+$(document).ready(function(){
+	$("#adicionar").click(function(){
+	
+		  swal({ title: "Defina um valor para criar o seu pocket",   
+				 text: "",   
+				 type: "input",   
+				 showCancelButton: true,   
+				 closeOnConfirm: false,   
+				 animation: "slide-from-top",   
+				 inputPlaceholder: "R$" }, 
+				 function(inputValue){   
+					if (inputValue === false) 
+						return false;      
+					if (inputValue === "") {     
+						swal.showInputError("Informe o valor do pocket");
+						return false   
+					}
+				var valorPocket = inputValue;
+				
+				$.get('http://pocketbackend.mybluemix.net/api/token/123', function(data){
+					var token = data.token;
+					
+					
+					swal({ title: "Defina o tempo de validade",   
+						 text: "Informar o tempo em minutos",   
+						 type: "input",   
+						 showCancelButton: true,   
+						 closeOnConfirm: false,   
+						 animation: "slide-from-top",   
+						 inputPlaceholder: "" }, 
+						 function(inputValue){   
+							if (inputValue === false) 
+								return false;      
+							if (inputValue === "") {     
+								swal.showInputError("Informe o tempo");
+								return false   
+							}
+							var tempo = inputValue;
+							$.get('http://pocketbackend.mybluemix.net/api/token/123', function(data){
+								var token = data.token;
+								addPocket(token, valorPocket, tempo);
+								swal("Parabéns", "O pocket " + token + " foi gerado", "success"); });
+							});
+				   });
+					
+					
+					addPocket(token, inputValue);
+					swal("Parabéns", "O pocket " + token + " foi gerado", "success"); });
+				});
+		   });
+});
+
+function addPocket(token, valor, tempo){
+	$("#txtAdd").hide();
+	$("#clique").hide();
+	
+	if($(".date-transaction").length == 0){
+		var dateTransaction = "<div class=\"date-transaction\"><div>Hoje <span>(11.12.2016)</span></div></div>";
+		$(".btns").append(dateTransaction);
+	}
+	
+	$(".btns").css("vertical-align","bottom");
+	
+	$(".btns").append("<div class=\"line-transaction\">"
+					+"<span style=\"float: left;\">"+tempo+"h</span>"
+					+"<span class=\"box-transaction\">"+token+"</span>"
+					+"<span style=\"float: right;\">R$ "+valor+"</span>"
+					+"</div>");
+}
+
+</script> 
+</head>
+<body>
+
+  <div class="container">
+	  <div class="btns">
+	  <label id="txtAdd"><p>Você não possui nenhum<br><b>pocket</b> criado</p></label>
+		<div class="logo" id="adicionar">		
+			<img src="images/btn.png"/>
+		 </div>
+		<span id="clique">clique acima para criar!</span>
+	  </div>
+  </div>
+
+</body>
+</html>
