@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
   
 <script>
+
 $(document).ready(function(){
 	$("#adicionar").click(function(){
 	
@@ -29,12 +30,15 @@ $(document).ready(function(){
 						swal.showInputError("Informe o valor do pocket");
 						return false   
 					}
+					
 				var valorPocket = inputValue;
+				var tempo = inputValue;
+				var x = "";
+
 				
 				$.get('http://pocketbackend.mybluemix.net/api/token/123', function(data){
 					var token = data.token;
-					
-					
+					x = token;
 					swal({ title: "Defina o tempo de validade",   
 						 text: "Informar o tempo em minutos",   
 						 type: "input",   
@@ -49,19 +53,41 @@ $(document).ready(function(){
 								swal.showInputError("Informe o tempo");
 								return false   
 							}
-							var tempo = inputValue;
-							$.get('http://pocketbackend.mybluemix.net/api/token/123', function(data){
-								var token = data.token;
 								addPocket(token, valorPocket, tempo);
-								swal("Parabéns", "O pocket " + token + " foi gerado", "success"); });
-							});
+								swal("Parabéns", "O pocket " + token + " foi gerado", "success"); 
+						});
+							
 				   });
 					
 					
-					addPocket(token, inputValue);
-					swal("Parabéns", "O pocket " + token + " foi gerado", "success"); });
+					//addPocket(x, inputValue,tempo);
+					 });
 				});
+				
+				var timer = $("#tempo").text();
+				
+				//window.setInterval(function(){countdown($("#tempo").text())},1000);
+				
+				//countdown("timer");
+				
 });
+
+
+function countdown(timer){
+		/*$( "span#tempo" ).each(function(index) {
+			var aux = $( this ).text().replace(":","")
+			aux--;
+			$("#tempo").html(aux[0]+":"+aux[1]+aux[2]);
+		});*/
+		if(timer == "" ||  timer == undefined || timer == 0) return;
+		var aux = timer.replace(":","");
+		//console.log(timer);
+		//console.log(aux);
+		aux-= 1;
+		aux = ""+ aux;
+		aux.split("");
+		$("#tempo").text(aux[0]+":"+aux[1]+aux[2]);
+}
 
 function addPocket(token, valor, tempo){
 	$("#txtAdd").hide();
@@ -73,12 +99,14 @@ function addPocket(token, valor, tempo){
 	}
 	
 	$(".btns").css("vertical-align","bottom");
-	
+	tempo += ":00";
 	$(".btns").append("<div class=\"line-transaction\">"
-					+"<span style=\"float: left;\">"+tempo+"h</span>"
+					+"<span style=\"float: left;\" id='tempo'>"+tempo+"</span>"
 					+"<span class=\"box-transaction\">"+token+"</span>"
 					+"<span style=\"float: right;\">R$ "+valor+"</span>"
 					+"</div>");
+					
+	window.setInterval(function(){countdown($("#tempo").text())},1000);
 }
 
 </script> 
