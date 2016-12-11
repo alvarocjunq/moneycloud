@@ -32,13 +32,13 @@ $(document).ready(function(){
 					}
 					
 				var valorPocket = inputValue;
-				var tempo = inputValue;
-				var x = "";
+				
+				//var x = "";
 
 				
 				$.get('http://pocketbackend.mybluemix.net/api/token/123', function(data){
 					var token = data.token;
-					x = token;
+					//x = token;
 					swal({ title: "Defina o tempo de validade",   
 						 text: "Informar o tempo em minutos",   
 						 type: "input",   
@@ -53,8 +53,9 @@ $(document).ready(function(){
 								swal.showInputError("Informe o tempo");
 								return false   
 							}
-								addPocket(token, valorPocket, tempo);
-								swal("Parabéns", "O pocket " + token + " foi gerado", "success"); 
+							var tempo = inputValue;
+							addPocket(token, valorPocket, tempo);
+							swal("Parabéns", "O pocket " + token + " foi gerado", "success"); 
 						});
 							
 				   });
